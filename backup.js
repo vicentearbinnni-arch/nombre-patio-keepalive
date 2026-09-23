@@ -29,6 +29,7 @@ async function run() {
         'Content-Type': 'application/json',
         'apikey': ANON_KEY,
         'Authorization': `Bearer ${ANON_KEY}`,
+        'Content-Profile': 'dinein',
       },
       body: JSON.stringify({ p_secret: BACKUP_SECRET }),
     });
@@ -54,9 +55,4 @@ async function run() {
     console.log(`Backup OK: ${filename}`);
   } catch (err) {
     console.error('Backup falló:', err.message);
-    await notifyDiscord(`🔴 Falló el backup semanal de Patio: ${err.message}`);
-    process.exit(1);
-  }
-}
-
-run();
+    await notifyDiscord
